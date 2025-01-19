@@ -8,7 +8,7 @@ pipeline {
             agent { label 'docker' }
 
             steps {
-                checkout scm[
+                checkout scm: [
                     $class: 'GitSCM',
                     branches: scm.branches,
                     extensions: [
