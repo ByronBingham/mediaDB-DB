@@ -9,7 +9,8 @@ pipeline {
 
             steps {
                 checkout scm
-                
+                sh 'git submodule update --init'
+
                 script {
                     def props = readProperties file: 'version'  // readProperties requires pipeline utility steps plugin
                     version = props.version
