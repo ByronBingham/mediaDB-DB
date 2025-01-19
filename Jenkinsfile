@@ -8,6 +8,8 @@ pipeline {
             agent { label 'docker' }
 
             steps {
+                checkout scm
+                
                 script {
                     def props = readProperties file: 'version'  // readProperties requires pipeline utility steps plugin
                     version = props.version
