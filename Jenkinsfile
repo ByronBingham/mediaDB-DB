@@ -8,22 +8,8 @@ pipeline {
             agent { label 'docker' }
 
             steps {
-                checkout scm: [
-                    $class: 'GitSCM',
-                    branches: scm.branches,
-                    extensions: [
-                        [$class: 'SubmoduleOption',
-                        disableSubmodules: false,
-                        parentCredentials: false,
-                        recursiveSubmodules: true,
-                        reference: 'https://github.com/ByronBingham/mediaDB-DB.git',
-                        shallow: true,
-                        trackingSubmodules: false]
-                    ],
-                    submoduleCfg: [],
-                    userRemoteConfigs: scm.userRemoteConfigs
-                ]
-
+                checkout scm
+                
                 script {
                     def props = readProperties file: 'version'  // readProperties requires pipeline utility steps plugin
                     version = props.version
